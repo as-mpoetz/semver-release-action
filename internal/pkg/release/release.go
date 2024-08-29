@@ -91,12 +91,12 @@ func createLightweightTag(ctx context.Context, client *github.Client, repo repos
 
 func createGithubRelease(ctx context.Context, client *github.Client, repo repository, release releaseDetails) error {
 	_, _, err := client.Repositories.CreateRelease(ctx, repo.owner, repo.name, &github.RepositoryRelease{
-		Name:            &release.version,
-		TagName:         &release.version,
-		TargetCommitish: &release.target,
-		Draft:           github.Bool(false),
-		Prerelease:      github.Bool(false),
+		Name:                 &release.version,
+		TagName:              &release.version,
+		TargetCommitish:      &release.target,
+		Draft:                github.Bool(false),
+		Prerelease:           github.Bool(false),
+		GenerateReleaseNotes: github.Bool(true),
 	})
-
 	return err
 }
